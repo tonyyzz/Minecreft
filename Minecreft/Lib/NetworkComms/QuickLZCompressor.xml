@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>QuickLZCompressor</name>
+    </assembly>
+    <members>
+        <member name="T:QuickLZCompressor.QuickLZ">
+            <summary>
+            Compressor that utilizes native quicklz compression provided by the <see href="http://www.quicklz.com/">QuickLZ</see> library 
+            </summary>
+        </member>
+        <member name="F:QuickLZCompressor.QuickLZ.compressDecompressLocker">
+            <summary>
+            Testing confirmed the decompress methods within quickLZ do not appear to be thread safe. No testing done on compress but also locked incase.
+            </summary>
+        </member>
+        <member name="P:QuickLZCompressor.QuickLZ.Instance">
+            <summary>
+            Instance singleton used to access <see cref="T:NetworkCommsDotNet.DPSBase.DataProcessor"/> instance.  Obsolete, use instead <see cref="M:NetworkCommsDotNet.DPSBase.DPSManager.GetDataProcessor``1"/>
+            </summary>
+        </member>
+        <member name="P:QuickLZCompressor.QuickLZ.Available">
+            <summary>
+            Returns true if running in windows and the native <see href="http://www.quicklz.com/">QuickLZ</see> library is available for execution.  False otherwise.  All function calls to <see cref="T:QuickLZCompressor.QuickLZ"/> will fail if Available returns false
+            </summary>
+        </member>
+        <member name="M:QuickLZCompressor.QuickLZ.ForwardProcessDataStream(System.IO.Stream,System.IO.Stream,System.Collections.Generic.Dictionary{System.String,System.String},System.Int64@)">
+            <inheritdoc />
+        </member>
+        <member name="M:QuickLZCompressor.QuickLZ.ReverseProcessDataStream(System.IO.Stream,System.IO.Stream,System.Collections.Generic.Dictionary{System.String,System.String},System.Int64@)">
+            <inheritdoc />
+        </member>
+    </members>
+</doc>
