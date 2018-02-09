@@ -56,6 +56,29 @@ namespace Minecreft.ConsoleTest
 						((System.Net.IPEndPoint)connection.ConnectionInfo.RemoteEndPoint).Port,
 						"这是发送给客户端的数据");
 				});
+				//AppendGlobalIncomingUnmanagedPacketHandler
+				NetworkComms.AppendGlobalIncomingUnmanagedPacketHandler(
+					(packetHeader, connection, bytes) =>
+				{
+					Console.WriteLine("AppendGlobalIncomingUnmanagedPacketHandler");
+				});
+				//RemoveGlobalConnectionCloseHandler
+				NetworkComms.RemoveGlobalConnectionCloseHandler((connection) =>
+				{
+					Console.WriteLine("RemoveGlobalConnectionCloseHandler");
+				});
+				//RemoveGlobalIncomingPacketHandler
+				NetworkComms.RemoveGlobalIncomingPacketHandler<string>(packetTypeStr,
+					(packetHeader, connection, incomingObject) =>
+					{
+						Console.WriteLine("RemoveGlobalIncomingPacketHandler");
+					});
+				//RemoveGlobalIncomingUnmanagedPacketHandler
+				NetworkComms.RemoveGlobalIncomingUnmanagedPacketHandler<string>((packetHeader, connection, incomingObject) =>
+				{
+					Console.WriteLine("RemoveGlobalIncomingUnmanagedPacketHandler");
+				});
+
 				//有连接关闭
 				NetworkComms.AppendGlobalConnectionCloseHandler(connection =>
 				{
@@ -72,9 +95,30 @@ namespace Minecreft.ConsoleTest
 			else
 			{
 				TCPConnection conn = TCPConnection.GetConnection(new ConnectionInfo(iPEndPoint.Address.ToString(), iPEndPoint.Port));
+
+				//处理服务器发来的消息
 				conn.AppendIncomingPacketHandler<string>(packetTypeStr, (packetHeader, connection, message) =>
 				{
 					Console.WriteLine("接收服务器的数据：" + message);
+				});
+				//AppendIncomingUnmanagedPacketHandler
+				conn.AppendIncomingUnmanagedPacketHandler((packetHeader, connection, incomingObject) =>
+				{
+					Console.WriteLine("AppendIncomingUnmanagedPacketHandler");
+				});
+				//AppendShutdownHandler
+				conn.AppendShutdownHandler((connection) =>
+				{
+					Console.WriteLine("AppendShutdownHandler");
+				});
+
+				//conn.RemoveIncomingPacketHandler();
+				//conn.RemoveIncomingUnmanagedPacketHandler();
+
+				//RemoveShutdownHandler
+				conn.RemoveShutdownHandler((connection) =>
+				{
+					Console.WriteLine("RemoveShutdownHandler");
 				});
 				for (int i = 0; i < 10; i++)
 				{
