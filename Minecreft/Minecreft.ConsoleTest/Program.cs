@@ -16,10 +16,10 @@ namespace Minecreft.ConsoleTest
 			Console.WriteLine("请选择Mode：");
 			Console.WriteLine("1 - 服务器");
 			Console.WriteLine("2 - 客户端");
-			var key = Console.ReadKey(true);
 			var serverMode = false;
 			while (true)
 			{
+				var key = Console.ReadKey(true);
 				if (key.Key == ConsoleKey.D1)
 				{
 					serverMode = true;
@@ -109,7 +109,8 @@ namespace Minecreft.ConsoleTest
 				//AppendShutdownHandler
 				conn.AppendShutdownHandler((connection) =>
 				{
-					Console.WriteLine("AppendShutdownHandler");
+					//客户端与服务器断开时的处理
+					Console.WriteLine("客户端与服务器断开时的处理");
 				});
 
 				//conn.RemoveIncomingPacketHandler();
@@ -120,12 +121,12 @@ namespace Minecreft.ConsoleTest
 				{
 					Console.WriteLine("RemoveShutdownHandler");
 				});
-				for (int i = 0; i < 10; i++)
+				for (int i = 0; i < 2; i++)
 				{
 					conn.SendObject<string>(packetTypeStr, "测试数据" + i);
 					Thread.Sleep(200);
 				}
-				NetworkComms.Shutdown();
+				//NetworkComms.Shutdown();
 			}
 			Console.ReadKey();
 		}
