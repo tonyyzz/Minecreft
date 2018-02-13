@@ -55,7 +55,7 @@ namespace Minecreft.ConsoleTest
 					break;
 			}
 			string packetTypeStr = "Message";
-			int tcpPort = 5788;
+			int tcpPort = 2012;
 			int udpPort = 5789;
 
 			//IPEndPoint iPEndPoint = new IPEndPoint(IPAddress.Any, port); //服务器测试（通过）
@@ -242,47 +242,47 @@ namespace Minecreft.ConsoleTest
 
 
 
-						IPEndPoint udpIPEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), udpPort);
+						//IPEndPoint udpIPEndPoint = new IPEndPoint(IPAddress.Parse("127.0.0.1"), udpPort);
 
-						UDPConnection udpCconn = null;
+						//UDPConnection udpCconn = null;
 
 
-						udpCconn = UDPConnection.GetConnection(new ConnectionInfo(udpIPEndPoint.Address.ToString(), udpIPEndPoint.Port), UDPOptions.Handshake);
+						//udpCconn = UDPConnection.GetConnection(new ConnectionInfo(udpIPEndPoint.Address.ToString(), udpIPEndPoint.Port), UDPOptions.Handshake);
 
-						//处理服务器发来的消息
-						udpCconn.AppendIncomingPacketHandler<string>(packetTypeStr, (packetHeader, connection, message) =>
-						{
-							Console.WriteLine("接收UDP服务器的数据：" + message);
-						});
-						//AppendIncomingUnmanagedPacketHandler
-						udpCconn.AppendIncomingUnmanagedPacketHandler((packetHeader, connection, incomingObject) =>
-						{
-							Console.WriteLine("AppendIncomingUnmanagedPacketHandler");
-						});
-						//AppendShutdownHandler
-						udpCconn.AppendShutdownHandler((connection) =>
-						{
-							//客户端与服务器断开时的处理
-							Console.WriteLine("UDP客户端与UDP服务器断开时的处理");
-						});
-						//屏蔽掉udp消息
-						//udpCconn.RemoveIncomingPacketHandler();
-						//udpCconn.RemoveIncomingUnmanagedPacketHandler();
-
-						//RemoveShutdownHandler
-						//udpCconn.RemoveShutdownHandler((connection) =>
+						////处理服务器发来的消息
+						//udpCconn.AppendIncomingPacketHandler<string>(packetTypeStr, (packetHeader, connection, message) =>
 						//{
-						//	Console.WriteLine("RemoveShutdownHandler");
+						//	Console.WriteLine("接收UDP服务器的数据：" + message);
 						//});
-						ThreadPool.QueueUserWorkItem(o =>
-						{
-							for (int i = 0; i < 10; i++)
-							{
-								udpCconn.SendObject<string>(packetTypeStr, "UDP测试数据" + i);
-								Thread.Sleep(20);
-							}
-							//udpCconn.CloseConnection(false);
-						});
+						////AppendIncomingUnmanagedPacketHandler
+						//udpCconn.AppendIncomingUnmanagedPacketHandler((packetHeader, connection, incomingObject) =>
+						//{
+						//	Console.WriteLine("AppendIncomingUnmanagedPacketHandler");
+						//});
+						////AppendShutdownHandler
+						//udpCconn.AppendShutdownHandler((connection) =>
+						//{
+						//	//客户端与服务器断开时的处理
+						//	Console.WriteLine("UDP客户端与UDP服务器断开时的处理");
+						//});
+						////屏蔽掉udp消息
+						////udpCconn.RemoveIncomingPacketHandler();
+						////udpCconn.RemoveIncomingUnmanagedPacketHandler();
+
+						////RemoveShutdownHandler
+						////udpCconn.RemoveShutdownHandler((connection) =>
+						////{
+						////	Console.WriteLine("RemoveShutdownHandler");
+						////});
+						//ThreadPool.QueueUserWorkItem(o =>
+						//{
+						//	for (int i = 0; i < 10; i++)
+						//	{
+						//		udpCconn.SendObject<string>(packetTypeStr, "UDP测试数据" + i);
+						//		Thread.Sleep(20);
+						//	}
+						//	//udpCconn.CloseConnection(false);
+						//});
 
 					}
 					break;
