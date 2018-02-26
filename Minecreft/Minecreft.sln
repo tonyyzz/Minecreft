@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minecreft.ConsoleTest", "Minecreft.ConsoleTest\Minecreft.ConsoleTest.csproj", "{BBA7D76D-238B-41C0-AC8F-E394D13FBBC5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Minecreft.ServerHall", "Minecreft.ServerHall\Minecreft.ServerHall.csproj", "{A436040C-7CE8-4EF1-A7CF-82012211B01E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{BBA7D76D-238B-41C0-AC8F-E394D13FBBC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBA7D76D-238B-41C0-AC8F-E394D13FBBC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBA7D76D-238B-41C0-AC8F-E394D13FBBC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A436040C-7CE8-4EF1-A7CF-82012211B01E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A436040C-7CE8-4EF1-A7CF-82012211B01E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A436040C-7CE8-4EF1-A7CF-82012211B01E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A436040C-7CE8-4EF1-A7CF-82012211B01E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
